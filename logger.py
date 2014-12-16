@@ -49,14 +49,13 @@ def getLastXAverage(hours, x):
 	dataquery = 'select mean(instant_power) from sensor where time > now() - ' + str(hours) + 'h limit ' + str(x)
 	result = db.query(dataquery)
 	return result
-	
+
 #returns the minimum power in last x data points within last 'hours' hours
 def getlastXMin(hours, x):
 	db = InfluxDBClient('localhost', '8086', 'root', 'root', 'power')
 	dataquery = 'select min(instant_power) from sensor where time > now() - ' + str(hours) + 'h limit ' + str(x)
 	result = db.query(dataquery)
 	return result
- No newline at end of file
 
 def getWatts():
 	#start_time = datetime.now()
