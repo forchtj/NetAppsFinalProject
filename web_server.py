@@ -4,6 +4,9 @@ from twisted.web.resource import Resource
 from twisted.internet import reactor
 
 # Matplotlib and MPLD3 imports
+import matplotlib
+matplotlib.use('Agg')
+
 import matplotlib.pylab as plt
 import matplotlib.dates as mdate
 import mpld3
