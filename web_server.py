@@ -83,11 +83,12 @@ class RecentDataHandler(Resource):
 
         root_html = "<html><body><div style=\"float:left\">"
         root_html += mpld3.fig_to_html(fig).encode("ascii")
-        root_html += "</div><div style=\"float:right\"></br><bold>STATISTICS:</bold> </br>"
-        root_html += "MIN Power: " + str(round(nps.min(y_axis), 6)) + " Watts </br>"
-        root_html += "MAX Power: " + str(round(nps.max(y_axis), 6)) + " Watts </br>"
-        root_html += "AVG Power: " + str(round(nps.average(y_axis), 6)) + " Watts </br>"
-        root_html += "Energy Usage: " + str(round((nps.average(y_axis)*((nps.max(x_axis_epoch)-nps.min(x_axis_epoch))/float(60*60)))/1000, 6)) + " Kilowatt Hours </br>"
+        if len(y_axis) > 0:
+            root_html += "</div><div style=\"float:right\"></br><bold>STATISTICS:</bold> </br>"
+            root_html += "MIN Power: " + str(round(nps.min(y_axis), 6)) + " Watts </br>"
+            root_html += "MAX Power: " + str(round(nps.max(y_axis), 6)) + " Watts </br>"
+            root_html += "AVG Power: " + str(round(nps.average(y_axis), 6)) + " Watts </br>"
+            root_html += "Energy Usage: " + str(round((nps.average(y_axis)*((nps.max(x_axis_epoch)-nps.min(x_axis_epoch))/float(60*60)))/1000, 6)) + " Kilowatt Hours </br>"
         root_html += "</div></body></html>"
         plt.close()
         return root_html
@@ -140,11 +141,12 @@ class DateRangeHandler(Resource):
 
         root_html = "<html><body><div style=\"float:left\">"
         root_html += mpld3.fig_to_html(fig).encode("ascii")
-        root_html += "</div><div style=\"float:right\"></br><bold>STATISTICS:</bold> </br>"
-        root_html += "MIN Power: " + str(round(nps.min(y_axis), 6)) + " Watts </br>"
-        root_html += "MAX Power: " + str(round(nps.max(y_axis), 6)) + " Watts </br>"
-        root_html += "AVG Power: " + str(round(nps.average(y_axis), 6)) + " Watts </br>"
-        root_html += "Energy Usage: " + str(round((nps.average(y_axis)*((nps.max(x_axis_epoch)-nps.min(x_axis_epoch))/float(60*60)))/1000, 6)) + " Kilowatt Hours </br>"
+        if len(y_axis) > 0:
+            root_html += "</div><div style=\"float:right\"></br><bold>STATISTICS:</bold> </br>"
+            root_html += "MIN Power: " + str(round(nps.min(y_axis), 6)) + " Watts </br>"
+            root_html += "MAX Power: " + str(round(nps.max(y_axis), 6)) + " Watts </br>"
+            root_html += "AVG Power: " + str(round(nps.average(y_axis), 6)) + " Watts </br>"
+            root_html += "Energy Usage: " + str(round((nps.average(y_axis)*((nps.max(x_axis_epoch)-nps.min(x_axis_epoch))/float(60*60)))/1000, 6)) + " Kilowatt Hours </br>"
         root_html += "</div></body></html>"
         plt.close()
         return root_html
