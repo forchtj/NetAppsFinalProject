@@ -1,5 +1,6 @@
 from influxdb import InfluxDBClient
 from random import randint
+import json
 
 
 def init():
@@ -31,3 +32,11 @@ def getLastXPoints(hours, x):
 	dataquery = 'select instant_power from sensor where time > now() - ' + str(hours) + 'h limit ' + str(x)
 	result = db.query(dataquery)
 	return result
+
+#returns the average power between te given time points
+def getLastXAverage(hours, x):
+	db = InfluxDBClient('localhost', '8086', 'root', 'root', 'power')
+	dataquery = 'select mean(instant_power) from sensor where time > now() - ' + str(hours) + 'h limit ' + str(x)
+	result = db.query(dataquery)
+	print result[0]
+
